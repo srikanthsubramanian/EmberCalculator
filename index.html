@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember Calculator</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+    <script type="text/x-handlebars">
+        <div class="container">
+            {{outlet}}
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" id="calculator" data-template-name="calculator">
+        <div class="calculator theme-calculator">
+            <div class="output-value theme-output-value">
+                <div class="operation-string">
+                    {{operationString}}
+                </div>
+                {{outputValue}}
+            </div>
+            {{#each model}}
+            <div class="numeric-keys-panel theme-numeric-keys-panel">
+                <div class="numeric-keys-container theme-numeric-keys-container">
+                    {{#each numericKeys}}
+                    <button class="numeric-key theme-numeric-key" {{action operandClicked value}}>
+                        {{label}}
+                    </button>
+                    {{/each}}
+                </div>
+                <div class="result-operator-container theme-result-operator-container">
+                    {{#each resultOperator}}
+                    <button class="result-operator theme-result-operator" {{action calculate}}>
+                        {{label}}
+                    </button>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="operator-keys-panel theme-operator-keys-panel">
+                <div class="operator-keys-container theme-operator-keys-container">
+                    {{#each operatorKeys}}
+                    <button class="operator-key theme-operator-key" {{action operatorClicked operation label}}>
+                        {{label}}
+                    </button>
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0.js"></script>
+  <script src="js/libs/ember-1.0.0.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/calculator-controller.js"></script>
+  <script src="js/models/calculator-model.js"></script>
+  <script src="js/routers/calculator-router.js"></script>
+
+</body>
+</html>
